@@ -1,773 +1,319 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<title>Food Finder</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
 
-    <title>The Food Store</title>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
 
-    <style>
+    html {
+        scroll-behavior: smooth;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
+    body {
+        background: #fff8f0;
+        color: #333;
+    }
+
+    /* MENU */
+
+    header {
+        background: #ff6b00;
+        color: white;
+        padding: 20px 8%;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav h1 {
+        font-size: 26px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+    /* INÍCIO */
+
+    .inicio {
+        text-align: center;
+        padding: 70px 20px;
+    }
+
+    .inicio h2 {
+        font-size: 42px;
+        color: #ff6b00;
+        margin-bottom: 15px;
+    }
+
+    .inicio p {
+        font-size: 18px;
+        margin-bottom: 25px;
+    }
+
+    .botao {
+        display: inline-block;
+        background: #ff6b00;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* COMIDAS */
+
+    section {
+        padding: 50px 8%;
+    }
+
+    section h2 {
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+
+    .comidas {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
+
+    .comida {
+        background: white;
+        padding: 25px;
+        text-align: center;
+        border-radius: 12px;
+        box-shadow: 0 3px 12px #00000018;
+    }
+
+    .comida span {
+        font-size: 45px;
+    }
+
+    .comida h3 {
+        margin: 12px 0;
+        color: #ff6b00;
+    }
+
+    /* LUGARES */
+
+    .lugares {
+        background: #fff0df;
+    }
+
+    .lugar {
+        background: white;
+        padding: 20px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+    }
+
+    .lugar h3 {
+        color: #ff6b00;
+        margin-bottom: 8px;
+    }
+
+    /* RODAPÉ */
+
+    footer {
+        background: #222;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
+    /* CELULAR */
+
+    @media (max-width: 600px) {
+
+        nav {
+            flex-direction: column;
+            gap: 15px;
         }
 
-        html {
-            scroll-behavior: smooth;
+        nav a {
+            margin: 0 8px;
         }
 
-        body {
-            background: #fff8f0;
-            color: #333;
-        }
-
-        /* =========================
-           CABEÇALHO
-        ========================= */
-
-        .hero {
-            min-height: 650px;
-
-            background:
-                linear-gradient(
-                    rgba(0, 0, 0, 0.55),
-                    rgba(0, 0, 0, 0.55)
-                ),
-                url("https://images.unsplash.com/photo-1504674900247-0877df9cc836")
-                center/cover;
-
-            color: white;
-        }
-
-        /* MENU */
-
-        .navbar {
-            height: 80px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 8%;
-        }
-
-        .navbar h2 {
-            color: #ff9f1c;
-            font-size: 28px;
-        }
-
-        .navbar ul {
-            display: flex;
-            gap: 25px;
-            list-style: none;
-        }
-
-        .navbar a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        .navbar a:hover {
-            color: #ff9f1c;
-        }
-
-        /* TEXTO PRINCIPAL */
-
-        .hero-content {
-            max-width: 700px;
-            padding: 150px 8%;
-        }
-
-        .hero-content h1 {
-            font-size: 52px;
-            margin-bottom: 20px;
-        }
-
-        .hero-content p {
-            font-size: 18px;
-            line-height: 1.7;
-            margin-bottom: 30px;
-        }
-
-        /* BOTÕES */
-
-        .btn,
-        button {
-            background: #ff6b00;
-            color: white;
-
-            border: none;
-
-            padding: 13px 25px;
-
-            border-radius: 8px;
-
-            cursor: pointer;
-
-            font-weight: bold;
-
-            text-decoration: none;
-
-            transition: 0.3s;
-        }
-
-        .btn:hover,
-        button:hover {
-            background: #e85d00;
-            transform: translateY(-2px);
-        }
-
-        /* =========================
-           PESQUISA
-        ========================= */
-
-        .pesquisa {
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .pesquisa h2 {
-            margin-bottom: 20px;
+        .inicio h2 {
             font-size: 32px;
         }
 
-        #campoBusca {
-            width: 90%;
-            max-width: 600px;
+    }
 
-            padding: 16px;
+</style>
+<title>Food Finder</title>
 
-            border: 2px solid #ff9f1c;
+<style>
 
-            border-radius: 10px;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
 
-            font-size: 16px;
+    html {
+        scroll-behavior: smooth;
+    }
 
-            outline: none;
+    body {
+        background: #fff8f0;
+        color: #333;
+    }
+
+    /* MENU */
+
+    header {
+        background: #ff6b00;
+        color: white;
+        padding: 20px 8%;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    nav h1 {
+        font-size: 26px;
+    }
+
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        font-weight: bold;
+    }
+
+    nav a:hover {
+        text-decoration: underline;
+    }
+
+    /* INÍCIO */
+
+    .inicio {
+        text-align: center;
+        padding: 70px 20px;
+    }
+
+    .inicio h2 {
+        font-size: 42px;
+        color: #ff6b00;
+        margin-bottom: 15px;
+    }
+
+    .inicio p {
+        font-size: 18px;
+        margin-bottom: 25px;
+    }
+
+    .botao {
+        display: inline-block;
+        background: #ff6b00;
+        color: white;
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    /* COMIDAS */
+
+    section {
+        padding: 50px 8%;
+    }
+
+    section h2 {
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+
+    .comidas {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
+
+    .comida {
+        background: white;
+        padding: 25px;
+        text-align: center;
+        border-radius: 12px;
+        box-shadow: 0 3px 12px #00000018;
+    }
+
+    .comida span {
+        font-size: 45px;
+    }
+
+    .comida h3 {
+        margin: 12px 0;
+        color: #ff6b00;
+    }
+
+    /* LUGARES */
+
+    .lugares {
+        background: #fff0df;
+    }
+
+    .lugar {
+        background: white;
+        padding: 20px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+    }
+
+    .lugar h3 {
+        color: #ff6b00;
+        margin-bottom: 8px;
+    }
+
+    /* RODAPÉ */
+
+    footer {
+        background: #222;
+        color: white;
+        text-align: center;
+        padding: 20px;
+    }
+
+    /* CELULAR */
+
+    @media (max-width: 600px) {
+
+        nav {
+            flex-direction: column;
+            gap: 15px;
         }
 
-        #campoBusca:focus {
-            border-color: #ff6b00;
+        nav a {
+            margin: 0 8px;
         }
 
-        /* =========================
-           SEÇÕES
-        ========================= */
-
-        .restaurantes,
-        .cardapio {
-            padding: 70px 8%;
-            text-align: center;
+        .inicio h2 {
+            font-size: 32px;
         }
 
-        .restaurantes {
-            background: white;
-        }
+    }
 
-        .restaurantes h2,
-        .cardapio h2,
-        .contato h2 {
-            font-size: 36px;
-            margin-bottom: 40px;
-        }
-
-        /* =========================
-           CARDS
-        ========================= */
-
-        .cards {
-            display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(250px, 1fr));
-
-            gap: 25px;
-        }
-
-        .card,
-        .comida {
-            background: white;
-
-            border-radius: 15px;
-
-            overflow: hidden;
-
-            box-shadow:
-                0 5px 20px rgba(0, 0, 0, 0.1);
-
-            padding-bottom: 25px;
-
-            transition: 0.3s;
-        }
-
-        .card:hover,
-        .comida:hover {
-            transform: translateY(-8px);
-        }
-
-        /* RESTAURANTES */
-
-        .card img {
-            width: 100%;
-            height: 200px;
-
-            object-fit: cover;
-        }
-
-        .card h3,
-        .comida h3 {
-            margin: 20px 0 10px;
-            font-size: 22px;
-        }
-
-        .card p,
-        .comida p {
-            margin: 10px 20px;
-            line-height: 1.5;
-        }
-
-        .card button,
-        .comida button {
-            margin-top: 15px;
-        }
-
-        /* =========================
-           CARDÁPIO
-        ========================= */
-
-        .cardapio {
-            background: #fff3e0;
-        }
-
-        .comida {
-            padding: 30px 20px;
-        }
-
-        .comida span {
-            font-size: 60px;
-        }
-
-        .comida strong {
-            display: block;
-
-            color: #ff6b00;
-
-            font-size: 22px;
-
-            margin: 15px;
-        }
-
-        /* =========================
-           CONTATO
-        ========================= */
-
-        .contato {
-            padding: 80px 20px;
-
-            text-align: center;
-
-            background: #ff6b00;
-
-            color: white;
-        }
-
-        .contato p {
-            margin-bottom: 25px;
-        }
-
-        .contato button {
-            background: white;
-            color: #ff6b00;
-        }
-
-        .contato button:hover {
-            background: #fff3e0;
-        }
-
-        #mensagem {
-            margin-top: 25px;
-            font-weight: bold;
-        }
-
-        /* =========================
-           RODAPÉ
-        ========================= */
-
-        footer {
-            background: #222;
-
-            color: white;
-
-            text-align: center;
-
-            padding: 25px;
-        }
-
-        /* =========================
-           CELULAR
-        ========================= */
-
-        @media (max-width: 700px) {
-
-            .navbar {
-                flex-direction: column;
-
-                height: auto;
-
-                padding: 20px;
-
-                gap: 20px;
-            }
-
-            .navbar ul {
-                flex-wrap: wrap;
-
-                justify-content: center;
-
-                gap: 15px;
-            }
-
-            .hero-content {
-                padding: 100px 25px;
-            }
-
-            .hero-content h1 {
-                font-size: 38px;
-            }
-
-            .hero-content p {
-                font-size: 16px;
-            }
-
-            .restaurantes,
-            .cardapio {
-                padding: 60px 20px;
-            }
-
-            .restaurantes h2,
-            .cardapio h2,
-            .contato h2 {
-                font-size: 30px;
-            }
-        }
-
-    </style>
-</head>
-
-
-<body>
-
-    <!-- =========================
-         CABEÇALHO
-    ========================= -->
-
-    <header class="hero" id="inicio">
-
-        <nav class="navbar">
-
-            <h2>The Food Store</h2>
-
-            <ul>
-
-                <li>
-                    <a href="#inicio">Início</a>
-                </li>
-
-                <li>
-                    <a href="#restaurantes">Restaurantes</a>
-                </li>
-
-                <li>
-                    <a href="#cardapio">Cardápio</a>
-                </li>
-
-                <li>
-                    <a href="#contato">Contato</a>
-                </li>
-
-            </ul>
-
-        </nav>
-
-
-        <div class="hero-content">
-
-            <h1>
-                Sabores que conquistam a cada mordida
-            </h1>
-
-            <p>
-                Bem-vindo ao The Food Store!
-                Descubra restaurantes, comidas deliciosas
-                e lugares incríveis para comer.
-                Encontre o seu próximo prato favorito.
-            </p>
-
-            <a href="#cardapio" class="btn">
-                Ver Cardápio
-            </a>
-
-        </div>
-
-    </header>
-
-
-    <!-- =========================
-         PESQUISA
-    ========================= -->
-
-    <section class="pesquisa">
-
-        <h2>
-            Encontre sua comida favorita
-        </h2>
-
-        <input
-            type="text"
-            id="campoBusca"
-            placeholder="Digite o nome de uma comida..."
-            onkeyup="buscarComida()"
-        >
-
-    </section>
-
-
-    <!-- =========================
-         RESTAURANTES
-    ========================= -->
-
-    <section
-        class="restaurantes"
-        id="restaurantes"
-    >
-
-        <h2>
-            Restaurantes próximos
-        </h2>
-
-
-        <div class="cards">
-
-
-            <div class="card">
-
-                <img
-                    src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4"
-                    alt="Restaurante"
-                >
-
-                <h3>
-                    Sabores da Casa
-                </h3>
-
-                <p>
-                    🍕 Pizza, massas e pratos especiais
-                </p>
-
-                <p>
-                    📍 Centro
-                </p>
-
-                <button
-                    onclick="pedir('Sabores da Casa')"
-                >
-                    Ver restaurante
-                </button>
-
-            </div>
-
-
-            <div class="card">
-
-                <img
-                    src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5"
-                    alt="Restaurante"
-                >
-
-                <h3>
-                    Food Burger
-                </h3>
-
-                <p>
-                    🍔 Hambúrgueres e batatas
-                </p>
-
-                <p>
-                    📍 Bairro Central
-                </p>
-
-                <button
-                    onclick="pedir('Food Burger')"
-                >
-                    Ver restaurante
-                </button>
-
-            </div>
-
-
-            <div class="card">
-
-                <img
-                    src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c"
-                    alt="Restaurante"
-                >
-
-                <h3>
-                    Tempero Brasil
-                </h3>
-
-                <p>
-                    🍛 Comida brasileira
-                </p>
-
-                <p>
-                    📍 Jardim América
-                </p>
-
-                <button
-                    onclick="pedir('Tempero Brasil')"
-                >
-                    Ver restaurante
-                </button>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         CARDÁPIO
-    ========================= -->
-
-    <section
-        class="cardapio"
-        id="cardapio"
-    >
-
-        <h2>
-            Nosso Cardápio
-        </h2>
-
-
-        <div class="cards">
-
-
-            <div class="comida">
-
-                <span>🍕</span>
-
-                <h3>
-                    Pizza
-                </h3>
-
-                <p>
-                    Pizza artesanal com ingredientes frescos.
-                </p>
-
-                <strong>
-                    R$ 39,90
-                </strong>
-
-                <button
-                    onclick="pedir('Pizza')"
-                >
-                    Pedir
-                </button>
-
-            </div>
-
-
-            <div class="comida">
-
-                <span>🍔</span>
-
-                <h3>
-                    Hambúrguer
-                </h3>
-
-                <p>
-                    Hambúrguer artesanal com queijo e molho especial.
-                </p>
-
-                <strong>
-                    R$ 29,90
-                </strong>
-
-                <button
-                    onclick="pedir('Hambúrguer')"
-                >
-                    Pedir
-                </button>
-
-            </div>
-
-
-            <div class="comida">
-
-                <span>🍣</span>
-
-                <h3>
-                    Sushi
-                </h3>
-
-                <p>
-                    Sushi preparado na hora com ingredientes selecionados.
-                </p>
-
-                <strong>
-                    R$ 49,90
-                </strong>
-
-                <button
-                    onclick="pedir('Sushi')"
-                >
-                    Pedir
-                </button>
-
-            </div>
-
-
-            <div class="comida">
-
-                <span>🍝</span>
-
-                <h3>
-                    Massas
-                </h3>
-
-                <p>
-                    Massas italianas com molhos especiais.
-                </p>
-
-                <strong>
-                    R$ 34,90
-                </strong>
-
-                <button
-                    onclick="pedir('Massas')"
-                >
-                    Pedir
-                </button>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         CONTATO
-    ========================= -->
-
-    <section
-        class="contato"
-        id="contato"
-    >
-
-        <h2>
-            Entre em contato
-        </h2>
-
-        <p>
-            Quer saber mais sobre nossos restaurantes e pratos?
-        </p>
-
-        <button onclick="mostrarContato()">
-            Fale conosco
-        </button>
-
-        <p id="mensagem"></p>
-
-    </section>
-
-
-    <!-- =========================
-         RODAPÉ
-    ========================= -->
-
-    <footer>
-
-        <p>
-            © 2026 The Food Store -
-            Todos os direitos reservados.
-        </p>
-
-    </footer>
-
-
-    <!-- =========================
-         JAVASCRIPT
-    ========================= -->
-
-    <script>
-
-        function buscarComida() {
-
-            const busca = document
-                .getElementById("campoBusca")
-                .value
-                .toLowerCase()
-                .trim();
-
-            const comidas =
-                document.querySelectorAll(".comida");
-
-
-            comidas.forEach(function(comida) {
-
-                const nome = comida
-                    .querySelector("h3")
-                    .textContent
-                    .toLowerCase();
-
-
-                if (nome.includes(busca)) {
-
-                    comida.style.display = "block";
-
-                } else {
-
-                    comida.style.display = "none";
-
-                }
-
-            });
-
-        }
-
-
-        function pedir(nome) {
-
-            alert(
-                "🍽️ Você escolheu: " +
-                nome +
-                "\n\nEm breve você poderá fazer o pedido!"
-            );
-
-        }
-
-
-        function mostrarContato() {
-
-            document.getElementById("mensagem").textContent =
-                "📧 contato@thefoodstore.com | 📱 (41) 99999-9999";
-
-        }
-
-    </script>
-
-</body>
-
-</html>
-
+</style>
